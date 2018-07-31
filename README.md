@@ -4,19 +4,6 @@ Custom LAMP configuration with optional provisioning for WP
 
 # Features
 
-<<<<<<< Updated upstream
-1. Auto-installs:
-    a. PHP 7.2
-    b. Apache 2
-    c. Mysql
-
-# Installation
-
-1. Requirements:
-    a. Vagrant
-    b. Git
-    c. Virtual box
-=======
 1) Uses Debian/Ubuntu Xenial 64-bit
 2) Auto installs:
   a) PHP 7.2 with mbstring
@@ -36,7 +23,7 @@ Custom LAMP configuration with optional provisioning for WP
   a) Vagrant
   b) Git
   c) Virtual box
->>>>>>> Stashed changes
+
 
 2. Clone and run `vagrant up`
 
