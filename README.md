@@ -4,11 +4,10 @@ Custom LAMP configuration with optional provisioning for WP
 
 # Features
 
-1) Auto installs
+1) Auto-installs:
     a) PHP 7.2
     b) Apache 2
     c) Mysql
-    d) 
 
 # Installation
 
