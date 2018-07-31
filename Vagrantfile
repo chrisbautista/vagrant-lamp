@@ -99,7 +99,8 @@ sudo echo "EnableSendfile Off" >> /etc/apache2/apache2.conf
 
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update && sudo apt-get install php7.2 -y 
-a2enmod php7.2
+sudo a2enmod php7.2
+sudo a2enmod rewrite
 
 sudo pecl install apcu
 sudo echo "extension=apcu.so" | tee -a /etc/php/7.2/mods-available/cache.ini
