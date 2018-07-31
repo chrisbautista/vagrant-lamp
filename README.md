@@ -6,13 +6,13 @@ Custom LAMP configuration with optional provisioning for WP
 
 1) Uses Debian/Ubuntu Xenial 64-bit
 2) Auto installs:
-  a) PHP 7.2 with mbstring
-  b) Apache 2
-  c) Mysql
-  d) Latest WP
-  e) roots.io/sage (see custom.wp.sample.sh)
-  f) postfix
-  g) essentials (git, curl, unzip)
+  - PHP 7.2 with mbstring
+  - Apache 2
+  - Mysql
+  - Latest WP
+  - roots.io/sage (see custom.wp.sample.sh)
+  - postfix
+  - essentials (git, curl, unzip)
 
 3) Local project folder mapping ./www => /var/www/html
 4) Opcode caching enabled
@@ -20,9 +20,9 @@ Custom LAMP configuration with optional provisioning for WP
 # Installation
 
 1) Requirements:
-  a) Vagrant
-  b) Git
-  c) Virtual box
+  - Vagrant
+  - Git
+  - Virtual box
 
 
 2. Clone and run `vagrant up`
