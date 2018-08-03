@@ -64,5 +64,5 @@ echo "= INSTALLING DRUPAL"
 echo ''
 
 cd $LOCALDIR
-composer create-project drupal-composer/drupal-project:8.x-dev /var/www/html --stability dev --no-interaction
+composer create-project drupal-composer/drupal-project:8.x-dev $LOCALDIR --stability dev --no-interaction
 
