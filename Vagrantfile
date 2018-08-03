@@ -48,8 +48,8 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   
   # For windows only
-  config.vm.synced_folder "./www/", "/var/www/html", :nfs => true 
-  config.vm.synced_folder "./bin/", "/opt/bin", :nfs => true 
+  config.vm.synced_folder "./www/", "/var/www/html", create: true,  :nfs => true 
+  config.vm.synced_folder "./bin/", "/opt/bin", create: true, :nfs => true 
 
   # For non-windows
   #config.vm.synced_folder "./www/", "/var/www/html"
@@ -58,16 +58,14 @@ Vagrant.configure("2") do |config|
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Display the VirtualBox GUI when booting the machine
-  #   vb.gui = true
-  #
-  #   # Customize the amount of memory on the VM:
-  #   vb.memory = "1024"
-  # end
-  #
+  config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+    vb.gui = false
+  
+    # Customize the amount of memory on the VM:
+    vb.memory = "2048"
+  end
+  
   # View the documentation for the provider you are using for more
   # information on available options.
 
@@ -81,7 +79,7 @@ echo "================================================="
 echo "= Upgrade Ubuntu                                ="
 echo "================================================="
 
-sudo apt-get update && sudo apt-get upgrade
+sudo DEBIAN_FRONTEND=noninteractive apt-get update && sudo apt-get upgrade
 sudo DEBIAN_FRONTEND=noninteractive apt-get install postfix -y
 sudo DEBIAN_FRONTEND=noninteractive apt-get install curl git unzip -y
 
@@ -93,7 +91,7 @@ echo "================================================="
 echo "= Install Apache and PHP                        ="
 echo "================================================="
 
-sudo apt-get install apache2 -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get install apache2 -y
 sudo echo "ServerName localhost" >> /etc/apache2/apache2.conf
 sudo echo "EnableSendfile Off" >> /etc/apache2/apache2.conf
 
@@ -172,10 +170,17 @@ config.vm.provision "shell" do |d|
   d.binary = true
 end 
 
-# uncomment to run custom script
-config.vm.provision "shell" do |s|
-  s.path = "bin/custom.sh"
-  s.binary = true
+# uncomment to install drupal
+config.vm.provision "shell" do |drupal|
+  drupal.path = "bin/custom.drupal.sh"
+  drupal.binary = true
 end
 
+# uncomment to install wp
+# config.vm.provision "shell" do |wp|
+#   wp.path = "bin/custom.wp.sh"
+#   wp.binary = true
+# end
+
 end
+# end config

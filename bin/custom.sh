@@ -1,9 +1,11 @@
-#!bin/sh
+#!/usr/bin/env bash
 ######################################################################################################
-# Sample provisioning script
+# Bootstrap provisioning script
 #
 # Maintaned by: Code Spud <chris@codespud.com>
 # Website: http://www.codespud.com
 # License: GPL
 ######################################################################################################
+
+
 echo 'custom provisioning done.'

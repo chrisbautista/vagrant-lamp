@@ -10,7 +10,7 @@ set -e
 #   Apache with rewrite module enabled or Nginx 
 # 
 # Usage:
-#  - rename to custom.sh
+#  - ./custom.wp.sh
 # 
 # Maintaned by: Code Spud <chris@codespud.com>
 # Website: http://www.codespud.com

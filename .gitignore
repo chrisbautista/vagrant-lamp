@@ -1,4 +1,6 @@
 .vagrant
 www
+!www
+!www/README.md
 *.log
 node_modules
