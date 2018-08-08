@@ -26,7 +26,12 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
   # config.vm.network "forwarded_port", guest: 80, host: 8080
+
+  #
+  # this enables forwarding and public access to the IP and port specified
+  # run `vagrant share` to enable ngrok public share
   config.vm.network "forwarded_port", guest: 3306, host: 3306
+  config.vm.network "forwarded_port", guest: 80, host: 80, host_ip: "127.0.0.1"
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine and only allow access
@@ -48,8 +53,9 @@ Vagrant.configure("2") do |config|
   # argument is a set of non-required options.
   
   # For windows only
-  config.vm.synced_folder "./www/", "/var/www/html", create: true,  :nfs => true 
-  config.vm.synced_folder "./bin/", "/opt/bin", create: true, :nfs => true 
+  # Issues
+  config.vm.synced_folder "./www/", "/var/www/html",  type: "nfs", nfs_version: 4, nfs_udp: false
+  config.vm.synced_folder "./bin/", "/opt/bin", type: "nfs", nfs_version: 4, nfs_udp: false
 
   # For non-windows
   #config.vm.synced_folder "./www/", "/var/www/html"
@@ -59,12 +65,21 @@ Vagrant.configure("2") do |config|
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
   config.vm.provider "virtualbox" do |vb|
-    # Display the VirtualBox GUI when booting the machine
+     # Display the VirtualBox GUI when booting the machine
     vb.gui = false
   
     # Customize the amount of memory on the VM:
     vb.memory = "2048"
+	  
+    # fixes Network issues with domains not resolving properly
+    # https://www.vagrantup.com/docs/virtualbox/common-issues.html
+	  vb.customize  ["modifyvm", :id, "--natdnshostresolver1", "on"]
+    
+    # Enables symlinks support
+    # You need to start vagrant in Administrator privileged command prompt in windows
+	  vb.customize  ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
   end
+  #
   
   # View the documentation for the provider you are using for more
   # information on available options.
